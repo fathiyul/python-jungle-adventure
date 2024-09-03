@@ -5,7 +5,7 @@ import ScoreDisplay from './ScoreDisplay';
 const GRID_SIZE = 20;
 const CELL_SIZE = 20;
 const INITIAL_SNAKE = [{ x: 10, y: 10 }];
-const MOVE_INTERVAL = 100;
+const MOVE_INTERVAL = 150; // Adjust this value to change the snake's speed (in milliseconds)
 
 const Game = () => {
   const [snake, setSnake] = useState(INITIAL_SNAKE);
@@ -21,6 +21,7 @@ const Game = () => {
   const gameLoopRef = useRef();
   const boardRef = useRef();
   const lastDirectionRef = useRef({ x: 1, y: 0 });
+  const nextDirectionRef = useRef({ x: 1, y: 0 });
 
   const generateRandomPosition = useCallback(() => {
     return {
@@ -64,6 +65,13 @@ const Game = () => {
   }, [snake, poisons, foodCount, generateRandomPosition, isPositionOccupied]);
 
   const moveSnake = useCallback(() => {
+    // Apply the next direction
+    if (nextDirectionRef.current.x !== -lastDirectionRef.current.x || 
+        nextDirectionRef.current.y !== -lastDirectionRef.current.y) {
+      setDirection(nextDirectionRef.current);
+      lastDirectionRef.current = nextDirectionRef.current;
+    }
+
     const head = snake[0];
     const newHead = {
       x: (head.x + direction.x + GRID_SIZE) % GRID_SIZE,
@@ -93,7 +101,6 @@ const Game = () => {
     }
 
     setSnake(newSnake);
-    lastDirectionRef.current = direction;
   }, [snake, direction, foods, poisons, generateSingleFood]);
 
   const handleMouseMove = useCallback((e) => {
@@ -113,8 +120,9 @@ const Game = () => {
       newDirection = { x: 0, y: dy > 0 ? 1 : -1 };
     }
 
+    // Store the next direction, but don't apply it immediately
     if (newDirection.x !== -lastDirectionRef.current.x || newDirection.y !== -lastDirectionRef.current.y) {
-      setDirection(newDirection);
+      nextDirectionRef.current = newDirection;
     }
   }, [snake]);
 
@@ -128,6 +136,7 @@ const Game = () => {
     generateInitialFoods();
     setDirection({ x: 1, y: 0 });
     lastDirectionRef.current = { x: 1, y: 0 };
+    nextDirectionRef.current = { x: 1, y: 0 };
   };
 
   useEffect(() => {
