@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# Python's Jungle Adventure
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Python's Jungle Adventure is a modern, classy take on the classic Snake game. Guide your python through a sophisticated environment, collecting exquisite fruits while avoiding dangerous fire hazards.
 
-## Available Scripts
+![Screenshot](./assets/Screenshot.png)
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Features](#features)
+- [Installation](#installation)
+- [How to Play](#how-to-play)
+- [Game Controls](#game-controls)
+- [Customization](#customization)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Jungle, classy design with a sophisticated color palette
+- Customizable game setup: choose the number of fruits and fire hazards
+- Smooth, cursor-controlled snake movement
+- Dynamic fire hazards that add challenge to the gameplay
+- Responsive design that works on various screen sizes
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run Python's Jungle Adventure on your local machine, follow these steps:
 
-### `npm run build`
+1. Ensure you have [Node.js](https://nodejs.org/) installed on your computer.
+2. Clone this repository to your local machine:
+   ```
+   git clone https://github.com/yourusername/pythons-jungle-adventure.git
+   ```
+3. Navigate to the project directory:
+   ```
+   cd pythons-jungle-adventure
+   ```
+4. Install the required dependencies:
+   ```
+   npm install
+   ```
+5. Start the development server:
+   ```
+   npm start
+   ```
+6. Open your web browser and visit `http://localhost:3000` to play the game.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to Play
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. When you start the game, you'll be presented with a setup screen.
+2. Choose the number of fruits and fire hazards you want in the game.
+3. Click "Begin Adventure" to start the game.
+4. Guide your python (the snake) using your mouse cursor.
+5. Collect fruits to grow longer and increase your score.
+6. Avoid colliding with the fire hazards or your own body.
+7. The game ends if you collide with a fire hazard or your own body.
+8. Try to collect as many fruits as possible to achieve the highest score!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Game Controls
 
-### `npm run eject`
+- Mouse movement: Controls the direction of the snake. The snake will follow the cursor's position.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Customization
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Before starting the game, you can customize:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Number of fruits: Choose between 1 to 10 fruits.
+- Number of fire hazards: Choose between 0 to 10 fire hazards.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Adjust these values to increase or decrease the game's difficulty.
 
-## Learn More
+## Technologies Used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React.js
+- CSS3
+- HTML5
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributing
 
-### Code Splitting
+Contributions to Python's Jungle Adventure are welcome! If you have suggestions for improvements or encounter any issues, please feel free to open an issue or submit a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Enjoy your adventure with Python's Jungle Adventure! 🐍✨

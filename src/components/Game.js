@@ -149,7 +149,7 @@ const Game = () => {
 
   const renderSetupScreen = () => (
     <div className="setup-screen">
-      <h2>Python's Elegant Adventure</h2>
+      <h2>Select number of items</h2>
       <div className="setup-controls">
         <label>
           Fruits:
@@ -180,7 +180,7 @@ const Game = () => {
 
   return (
     <div className="game-container">
-      <h1>Python's Elegant Adventure</h1>
+      <h1>Python's Jungle Adventure</h1>
       {setupMode ? (
         renderSetupScreen()
       ) : (
