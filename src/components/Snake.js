@@ -1,4 +1,5 @@
 import React from 'react';
+import './Snake.css';
 
 const Snake = ({ snake, cellSize }) => {
   return (
@@ -6,15 +7,12 @@ const Snake = ({ snake, cellSize }) => {
       {snake.map((segment, index) => (
         <div
           key={index}
+          className={`snake-segment ${index === 0 ? 'snake-head' : ''}`}
           style={{
-            position: 'absolute',
             left: `${segment.x * cellSize}px`,
             top: `${segment.y * cellSize}px`,
             width: `${cellSize}px`,
             height: `${cellSize}px`,
-            backgroundColor: index === 0 ? '#4CAF50' : '#81C784', // Head is darker green
-            border: '1px solid #2E7D32',
-            borderRadius: '2px',
           }}
         />
       ))}

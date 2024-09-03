@@ -1,0 +1,19 @@
+.score-display {
+    margin-top: 20px;
+    font-size: 1.2em;
+    background-color: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.score-label {
+    color: #bdc3c7;
+    margin-right: 10px;
+}
+
+.score-value {
+    color: #f1c40f;
+    font-weight: bold;
+}

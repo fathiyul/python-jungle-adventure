@@ -1,15 +1,11 @@
 import React from 'react';
+import './ScoreDisplay.css';
 
 const ScoreDisplay = ({ score }) => {
   return (
-    <div
-      style={{
-        fontSize: '24px',
-        fontWeight: 'bold',
-        marginTop: '20px',
-      }}
-    >
-      Score: {score}
+    <div className="score-display">
+      <span className="score-label">Fruits Eaten:</span>
+      <span className="score-value">{score}</span>
     </div>
   );
 };

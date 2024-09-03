@@ -1,24 +1,24 @@
 import React, { forwardRef } from 'react';
 import Snake from './Snake';
 import Food from './Food';
-import Poison from './Poison';
+import Fire from './Fire';
+import './Board.css';
 
-const Board = forwardRef(({ snake, foods, poisons, gridSize, cellSize }, ref) => {
+const Board = forwardRef(({ snake, foods, fires, gridSize, cellSize }, ref) => {
   const style = {
     width: `${gridSize * cellSize}px`,
     height: `${gridSize * cellSize}px`,
-    position: 'relative',
-    border: '1px solid black',
   };
 
   return (
-    <div ref={ref} style={style}>
+    <div ref={ref} className="game-board" style={style}>
+      <div className="jungle-background"></div>
       <Snake snake={snake} cellSize={cellSize} />
       {foods.map((food, index) => (
         <Food key={`food-${index}`} position={food} cellSize={cellSize} />
       ))}
-      {poisons.map((poison, index) => (
-        <Poison key={`poison-${index}`} position={poison} cellSize={cellSize} />
+      {fires.map((fire, index) => (
+        <Fire key={`fire-${index}`} position={fire} cellSize={cellSize} />
       ))}
     </div>
   );

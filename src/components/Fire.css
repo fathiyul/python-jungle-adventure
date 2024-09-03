@@ -1,0 +1,38 @@
+.fire {
+    position: absolute;
+}
+
+.flame {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    background-color: #e74c3c;
+    border-radius: 50% 0 50% 50%;
+    transform: rotate(-45deg);
+    animation: flicker 0.5s infinite alternate;
+}
+
+.flame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f39c12;
+    border-radius: 50% 0 50% 50%;
+    transform: rotate(45deg) scale(0.8);
+    animation: flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker {
+    0% {
+        transform: rotate(-45deg) scale(1);
+    }
+
+    100% {
+        transform: rotate(-45deg) scale(0.9);
+    }
+}

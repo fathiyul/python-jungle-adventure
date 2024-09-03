@@ -1,19 +1,20 @@
 import React from 'react';
+import './Fire.css';
 
-const Poison = ({ position, cellSize }) => {
+const Fire = ({ position, cellSize }) => {
   return (
     <div
+      className="fire"
       style={{
-        position: 'absolute',
         left: `${position.x * cellSize}px`,
         top: `${position.y * cellSize}px`,
         width: `${cellSize}px`,
         height: `${cellSize}px`,
-        backgroundColor: 'purple',
-        borderRadius: '50%',
       }}
-    />
+    >
+      <div className="flame"></div>
+    </div>
   );
 };
 
-export default Poison;
+export default Fire;
