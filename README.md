@@ -30,11 +30,11 @@ To run Python's Jungle Adventure on your local machine, follow these steps:
 1. Ensure you have [Node.js](https://nodejs.org/) installed on your computer.
 2. Clone this repository to your local machine:
    ```
-   git clone https://github.com/yourusername/pythons-jungle-adventure.git
+   git clone https://github.com/fathiyul/python-jungle-adventure.git
    ```
 3. Navigate to the project directory:
    ```
-   cd pythons-jungle-adventure
+   cd python-jungle-adventure
    ```
 4. Install the required dependencies:
    ```
