@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react';
 import Snake from './Snake';
 import Food from './Food';
+import Poison from './Poison';
 
-const Board = forwardRef(({ snake, food, gridSize, cellSize }, ref) => {
+const Board = forwardRef(({ snake, food, poisons, gridSize, cellSize }, ref) => {
   const style = {
     width: `${gridSize * cellSize}px`,
     height: `${gridSize * cellSize}px`,
@@ -13,7 +14,10 @@ const Board = forwardRef(({ snake, food, gridSize, cellSize }, ref) => {
   return (
     <div ref={ref} style={style}>
       <Snake snake={snake} cellSize={cellSize} />
-      <Food position={food} cellSize={cellSize} />
+      {food && <Food position={food} cellSize={cellSize} />}
+      {poisons.map((poison, index) => (
+        <Poison key={index} position={poison} cellSize={cellSize} />
+      ))}
     </div>
   );
 });

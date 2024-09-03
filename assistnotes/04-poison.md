@@ -1,3 +1,8 @@
+Certainly! I'll update the game logic to include purple poisons as you've described. We'll add poison generation, collision detection with poisons, and ensure that food doesn't appear where poisons are located.
+
+
+
+```javascript
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Board from './Board';
 import ScoreDisplay from './ScoreDisplay';
@@ -193,3 +198,164 @@ const Game = () => {
 };
 
 export default Game;
+
+```
+
+Now, let's go through the key changes and additions:
+
+1. Added poison state:
+   ```javascript
+   const [poisons, setPoisons] = useState([]);
+   ```
+
+2. New helper functions:
+   - `generateRandomPosition`: Generates a random position on the grid.
+   - `isPositionOccupied`: Checks if a position is occupied by snake, food, or poison.
+
+3. Poison generation:
+   ```javascript
+   const generatePoisons = useCallback(() => {
+     const newPoisons = [];
+     while (newPoisons.length < POISON_COUNT) {
+       const newPoison = generateRandomPosition();
+       if (!isPositionOccupied(newPoison, [...snake, ...newPoisons])) {
+         newPoisons.push(newPoison);
+       }
+     }
+     setPoisons(newPoisons);
+   }, [snake, generateRandomPosition, isPositionOccupied]);
+   ```
+   This function generates 3 poisons at random positions, ensuring they don't overlap with the snake or each other.
+
+4. Updated food generation:
+   ```javascript
+   const generateFood = useCallback(() => {
+     let newFood;
+     do {
+       newFood = generateRandomPosition();
+     } while (isPositionOccupied(newFood, [...snake, ...poisons]));
+     setFood(newFood);
+   }, [snake, poisons, generateRandomPosition, isPositionOccupied]);
+   ```
+   This ensures that food doesn't appear where poisons are located.
+
+5. Updated snake movement logic:
+   ```javascript
+   // Check if the new head collides with poison
+   if (poisons.some(poison => poison.x === newHead.x && poison.y === newHead.y)) {
+     setGameOver(true);
+     return;
+   }
+   ```
+   This checks for collision with poison and ends the game if the snake eats a poison.
+
+6. Updated game start logic:
+   ```javascript
+   const startGame = () => {
+     // ... existing code ...
+     generatePoisons();
+     generateFood();
+     // ... existing code ...
+   };
+   ```
+   This generates poisons and food when the game starts.
+
+7. Updated Board component props:
+   ```javascript
+   <Board
+     ref={boardRef}
+     snake={snake}
+     food={food}
+     poisons={poisons}
+     gridSize={GRID_SIZE}
+     cellSize={CELL_SIZE}
+   />
+   ```
+   We now pass the poisons to the Board component for rendering.
+
+To complete this implementation, you'll need to update your Board component to render the poisons. Here's how you can modify the Board component:
+
+Creating a separate Poison component would be a better approach for maintaining a clean and modular structure. Let's create a Poison component and update our Board component to use it.
+
+First, let's create the Poison component:
+
+```javascript
+import React from 'react';
+
+const Poison = ({ position, cellSize }) => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: `${position.x * cellSize}px`,
+        top: `${position.y * cellSize}px`,
+        width: `${cellSize}px`,
+        height: `${cellSize}px`,
+        backgroundColor: 'purple',
+        borderRadius: '50%',
+      }}
+    />
+  );
+};
+
+export default Poison;
+
+```
+
+Now, let's update our Board component to use the new Poison component:
+
+```javascript
+import React, { forwardRef } from 'react';
+import Snake from './Snake';
+import Food from './Food';
+import Poison from './Poison';
+
+const Board = forwardRef(({ snake, food, poisons, gridSize, cellSize }, ref) => {
+  const style = {
+    width: `${gridSize * cellSize}px`,
+    height: `${gridSize * cellSize}px`,
+    position: 'relative',
+    border: '1px solid black',
+  };
+
+  return (
+    <div ref={ref} style={style}>
+      <Snake snake={snake} cellSize={cellSize} />
+      {food && <Food position={food} cellSize={cellSize} />}
+      {poisons.map((poison, index) => (
+        <Poison key={index} position={poison} cellSize={cellSize} />
+      ))}
+    </div>
+  );
+});
+
+export default Board;
+
+```
+
+These changes make our code more modular and easier to maintain. The Poison component is now responsible for rendering individual poison elements, similar to how we have separate Snake and Food components.
+
+src/
+  components/
+    Game.js
+    Board.js
+    Snake.js
+    Food.js
+    Poison.js
+    ScoreDisplay.js
+```
+
+The Game component remains the same as in the previous implementation. This structure allows for better separation of concerns:
+
+1. The Game component manages the overall game state and logic.
+2. The Board component is responsible for laying out all game elements.
+3. Individual components (Snake, Food, Poison) handle their own rendering logic.
+
+This modular approach makes it easier to modify or extend individual game elements in the future. For example, if you wanted to add different types of poison or special effects, you could easily modify the Poison component without affecting the rest of the game.
+
+These changes implement the new game mechanics you requested:
+1. Three purple poisons are randomly placed at the start of the game.
+2. If the snake eats a poison, the game ends.
+3. Food doesn't appear where poisons are located.
+
+The game now has an additional challenge and strategic element with the introduction of the poison obstacles.
