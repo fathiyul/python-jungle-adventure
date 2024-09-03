@@ -1,3 +1,6 @@
+We'll modify the `Game` component to prevent backward movement and allow the snake to wrap around the edges of the board.
+
+```javascript
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Board from './Board';
 import ScoreDisplay from './ScoreDisplay';
@@ -165,3 +168,40 @@ const Game = () => {
 };
 
 export default Game;
+
+```
+
+Let's go through the key changes:
+
+1. Preventing backward movement:
+   - We've added a `lastDirectionRef` to keep track of the last direction the snake moved.
+   - In the `handleMouseMove` function, we now check if the new direction is opposite to the last direction:
+     ```javascript
+     if (newDirection.x !== -lastDirectionRef.current.x || newDirection.y !== -lastDirectionRef.current.y) {
+       setDirection(newDirection);
+     }
+     ```
+   - This prevents the snake from moving directly backward, which would cause immediate collision with its body.
+
+2. Connecting sides (wrapping around edges):
+   - We've modified the calculation of the new head position in the `moveSnake` function:
+     ```javascript
+     const newHead = {
+       x: (head.x + direction.x + GRID_SIZE) % GRID_SIZE,
+       y: (head.y + direction.y + GRID_SIZE) % GRID_SIZE
+     };
+     ```
+   - The `(... + GRID_SIZE) % GRID_SIZE` calculation ensures that when the snake goes off one edge, it appears on the opposite edge. This works for all four sides of the game board.
+
+3. Updating the last direction:
+   - We update `lastDirectionRef` at the end of the `moveSnake` function:
+     ```javascript
+     lastDirectionRef.current = direction;
+     ```
+   - This ensures that we always have the most recent direction for our backward movement check.
+
+These changes accomplish both of your requested updates:
+1. The snake can no longer move backward, preventing immediate game over scenarios.
+2. The snake can now move through the walls and appear on the opposite side, creating a continuous playing field.
+
+The rest of the game logic remains the same, including food generation, score tracking, and game over conditions (which now only occur if the snake collides with its own body).
